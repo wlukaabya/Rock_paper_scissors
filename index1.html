@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function computerPlay()
+        {
+            let parameters = ['Rock','Paper','Scissors']
+            computer_result = parameters[Math.floor(Math.random()*parameters.length)]
+            return computer_result;
+        }
+        
+        function play_game(s1,s2)
+        {
+            if(s1==='Rock'||s1==='Paper'||s1==='Scissors')
+            {
+            if(((s1==='Rock')&& (s2==='Scissors'))||((s1==='Scissors')&&(s2==='Paper'))||((s1==='Paper')&&(s2==='Rock')))
+            {
+                console.log('You win! '+s1+' beats '+s2);
+                return 'win';
+            }
+            else if(((s1==='Rock')&& (s2==='Rock'))||((s1==='Scissors')&&(s2==='Scissors'))||((s1==='Paper')&&(s2==='Paper')))
+            {
+                console.log('The game is a draw '+s1+ ' = '+s2);
+                return 'tie';
+            }
+            else
+            {
+                console.log('You loose! '+s2+' beats '+s1);
+                return 'loss'
+            }
+            }
+            else
+            {
+                console.log('Invalid input, Please type in a valid value');
+            }
+        }
+        function capitalize(x)
+        {
+            output=x.substring(0,1).toUpperCase() + x.substring(1).toLowerCase();
+            return output;
+        }
+        function game()
+        {
+            let computerPoints = 0;
+            let playerPoints = 0;
+            for(var i =0;i<5;i++)
+            {
+                let computerSelection = computerPlay();
+                let x = prompt('Please type your rock-paper-scissor play option:');
+                let playerSelection = capitalize(x);
+                let result = play_game(playerSelection,computerSelection);
+
+                switch (result)
+                {
+                    case 'tie': 
+                    //computerPoints++;
+                    //playerPoints++;
+                    break;
+                    case 'loss':
+                    computerPoints++;
+                    break;
+                    case 'win':
+                    playerPoints++;
+                }
+            }
+            console.log('Results: PC;'+computerPoints+' Player;'+playerPoints); 
+            if(computerPoints>playerPoints)
+            {
+                console.log('Computer wins');
+            }
+            else if(playerPoints>computerPoints)
+            {
+                console.log('Player wins');
+            }
+            else
+            {
+                console.log('its a tie');
+            }
+        }
+
+        game();
+    
+
+        
+        
+
+    </script>
+</body>
+</html>
