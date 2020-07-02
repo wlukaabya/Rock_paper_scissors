@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index1.css">
 </head>
 <body>
+    <h2>Please select your play option;</p>
+    <div id= 'buttons'>
+        
+        <button id='Rock'>Rock</button>
+        <button id='Paper'>Paper</button>
+        <button id='Scissors'>Scissors</button><br>
+        <input type="reset" value="reset" id='reset'>
+    </div>
+    <div id='msgs'>
+        
+    </div>
     <script>
         
         function computerPlay()
@@ -17,77 +29,101 @@
         
         function play_game(s1,s2)
         {
-            if(s1==='Rock'||s1==='Paper'||s1==='Scissors')
-            {
+            
             if(((s1==='Rock')&& (s2==='Scissors'))||((s1==='Scissors')&&(s2==='Paper'))||((s1==='Paper')&&(s2==='Rock')))
             {
-                console.log('You win! '+s1+' beats '+s2);
+                const refnc = document.querySelector('#msgs')
+                const win = document.createElement('p');
+                const text1 = document.createTextNode('You win! '+s1+' beats '+s2);
+                win.appendChild(text1);
+                refnc.appendChild(win);
+                
                 return 'win';
             }
             else if(((s1==='Rock')&& (s2==='Rock'))||((s1==='Scissors')&&(s2==='Scissors'))||((s1==='Paper')&&(s2==='Paper')))
             {
-                console.log('The game is a draw '+s1+ ' = '+s2);
+                const refnc = document.querySelector('#msgs')
+                const win = document.createElement('p');
+                const text1 = document.createTextNode('The game is a draw!');
+                win.appendChild(text1);
+                refnc.appendChild(win);
                 return 'tie';
             }
             else
             {
-                console.log('You loose! '+s2+' beats '+s1);
+                const refnc = document.querySelector('#msgs')
+                const win = document.createElement('p');
+                const text1 = document.createTextNode('You loose! '+s2+' beats '+s1);
+                win.appendChild(text1);
+                refnc.appendChild(win);
+                
                 return 'loss'
             }
+            
+        }
+      
+
+        const buttons = document.querySelectorAll('button')
+
+        buttons.forEach((button)=>{
+        button.addEventListener('click',()=>{
+        let computerPoints = 0;
+        let playerPoints = 0;
+        let computerSelection = computerPlay();
+        let playerSelection = button.id;
+        let result = play_game(playerSelection,computerSelection);
+        count(result)
+        })
+        })
+
+        var counter1=0;
+        var counter2=0;
+        function count(x)
+        {
+            if(x==='win')
+            {
+                counter1 += 1;
+            }
+            else if(x==='tie')
+            {
+
             }
             else
             {
-                console.log('Invalid input, Please type in a valid value');
+                counter2 += 1;
             }
-        }
-        function capitalize(x)
-        {
-            output=x.substring(0,1).toUpperCase() + x.substring(1).toLowerCase();
-            return output;
-        }
-        function game()
-        {
-            let computerPoints = 0;
-            let playerPoints = 0;
-            for(var i =0;i<5;i++)
-            {
-                let computerSelection = computerPlay();
-                let x = prompt('Please type your rock-paper-scissors play option:');
-                let playerSelection = capitalize(x);
-                let result = play_game(playerSelection,computerSelection);
 
-                switch (result)
-                {
-                    case 'tie': 
-                    //computerPoints++;
-                    //playerPoints++;
-                    break;
-                    case 'loss':
-                    computerPoints++;
-                    break;
-                    case 'win':
-                    playerPoints++;
-                }
+            if(counter1===5){
+                const refnc = document.querySelector('#msgs')
+                const win = document.createElement('p');
+                win.style.color='red';
+                const text1 = document.createTextNode('Results: Player;'+counter1+' Computer;'+counter2+' Player wins');
+                win.appendChild(text1);
+                refnc.appendChild(win);
+                counter1=0;
+                
             }
-            console.log('Results: PC;'+computerPoints+' Player;'+playerPoints); 
-            if(computerPoints>playerPoints)
-            {
-                console.log('Computer wins');
+            else if(counter2===5){
+                const refnc = document.querySelector('#msgs')
+                const win = document.createElement('p');
+                win.style.color='red';
+                const text1 = document.createTextNode('Results: Player;'+counter1+' Computer;'+counter2+' Computer wins');
+                win.appendChild(text1);
+                refnc.appendChild(win);
+                counter2=0;
+                
             }
-            else if(playerPoints>computerPoints)
-            {
-                console.log('Player wins');
-            }
-            else
-            {
-                console.log('its a tie');
-            }
-        }
 
-        game();
-    
+        }
 
         
+            var btn = document.querySelector('#reset');
+            btn.addEventListener('click',()=>{
+                const refnc = document.querySelector('#msgs');
+            refnc.innerHTML = '';
+            counter1=0;
+            counter2=0;
+            })
         
 
     </script>

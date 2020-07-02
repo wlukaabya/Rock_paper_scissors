@@ -1,0 +1,27 @@
+#buttons{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   justify-content: space-between;
+  
+
+
+}
+h2{
+    text-align:center;
+    font-size: 30px;
+
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    background-color: rgba(0,0,100,0.3);
+    margin-left: 300px;
+    margin-right: 300px;
+}
+#msgs{
+    border: solid red;
+    font-size: 15px;
+}
